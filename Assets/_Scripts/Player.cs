@@ -40,11 +40,18 @@ public class Player : MonoBehaviour
         }
     }
 
+    private float minYpos = -7.5f;
+
+    private void FixedUpdate()
+    {
+        if (transform.position.y < minYpos) Lose();
+    }
+
     IEnumerator DownJump()
     {
         isDownJump = true;
         rb.AddForce(-transform.up * downForce, ForceMode2D.Impulse);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.25f);
         isDownJump = false;
     }
 
